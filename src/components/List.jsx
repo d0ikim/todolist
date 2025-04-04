@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./List.css";
 import TodoItem from "./TodoItem";
 
-const List = ({ todos, onUpdate }) => {
+const List = ({ todos, onUpdate, onDelete }) => {
   const [search, setSearch] = useState("");
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
@@ -30,7 +30,14 @@ const List = ({ todos, onUpdate }) => {
       <div className="todos_wrapper"></div>
       {filteredTodos.map((todo) => {
         // 배열에 담긴 데이터를 리스트 형태로 만들수있음
-        return <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />; // map콜백함수에선 HTML태그나 컴포넌트를 리턴함
+        return (
+          <TodoItem
+            key={todo.id}
+            {...todo}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
+          />
+        ); // map콜백함수에선 HTML태그나 컴포넌트를 리턴함
       })}
     </div>
   );
